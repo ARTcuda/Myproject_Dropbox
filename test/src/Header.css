@@ -1,0 +1,9 @@
+/* navbar */
+.navbar-blue {
+    background-color: #0057b7;
+  }
+
+/* Title */
+.navbar-blue .navbar-brand {
+  color: black;
+}
