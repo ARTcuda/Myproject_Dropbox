@@ -4,12 +4,21 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
+const { queryParser } = require('express-query-parser')
 
 var router = require('./routes');
 
 var app = express();
 
 app.use(cors())
+app.use(
+  queryParser({
+    parseNull: true,
+    parseUndefined: true,
+    parseBoolean: true,
+    parseNumber: true
+  })
+)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

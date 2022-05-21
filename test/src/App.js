@@ -8,30 +8,31 @@ const API_URL = 'http://localhost:3001'
 
 function App() {
   const [list, setList] = useState([])
+  const [cursor, setCursor] = useState('')
   const [selected, setSelected] = useState([]) // исправить, не работает. В FileItem лежит еще один onclick решить что оставить и сделать что бьі работало
 
   const showAlert = (a) => {
     alert(a);
   }
 
-
-  useEffect( async () => {
-    const listResponse = await fetch(`${API_URL}/dropbox/list`)
-    console.log(listResponse)
+  const fetchList = async () => {
+    const listResponse = await fetch(`${API_URL}/dropbox/list?limit=${5}`)
     const listJSONResponse = await listResponse.json()
-    setList(listJSONResponse)
-  }, [])
-
-  const updateFiles = list => {
-    const newlistResponse = fetch(`${API_URL}/dropbox/addItems`)
-    console.log(newlistResponse)
-    const newlistJSONResponse = newlistResponse.json()
-    setList(...list,...newlistJSONResponse)
+    setList(listJSONResponse.entries)
+    setCursor(listJSONResponse.cursor)
   }
 
-  const handleButtonClick = () =>{
-    console.log('clicked')
-  }  
+  useEffect( () => {
+    fetchList()
+  }, [])
+
+  const loadMore = async () => {
+    const listResponse = await fetch(`${API_URL}/dropbox/addItems?cursor=${cursor}`)
+    console.log(listResponse)
+    const listJSONResponse = await listResponse.json()
+    setList([list, listJSONResponse.entries].flat())
+    setCursor(listJSONResponse.cursor)
+  }
 
   return (
     <div className="App">
@@ -48,7 +49,7 @@ function App() {
           setSelected={setSelected}
         />)}
       </div>
-      <button onClick={handleButtonClick} type="button" class="btn btn-primary">Add New Files</button>
+      <button onClick={loadMore} type="button" className="btn btn-primary">Load more</button>
       <Footer/>
     </div>
     

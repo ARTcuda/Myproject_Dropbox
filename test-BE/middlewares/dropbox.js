@@ -5,14 +5,10 @@ const Dropbox = require('dropbox').Dropbox
 
 const listFiles = async (req, res, next) => {
   try {
+    const { cursor, limit = process.env.COUNT } = req.query
     const dbx = new Dropbox({ accessToken: process.env.DROPBOX_TOKEN })
-    const { result } = await dbx.filesListFolder({path: '', limit: 10})
-    const { cursor } = await dbx.filesListFolderGetLatestCursor({path: ''})
-    console.log('entries', result.entries)
-    console.log('more files?', result.has_more)
-    console.log('cursor',cursor)
-    console.log('res.cursor',result.cursor)
-    res.send(result.entries)
+    const { result } = await dbx.filesListFolder({path: '', limit })
+    res.send({ entries: result.entries, cursor: result.cursor })
   } catch(err) {
     next(err)
   }
@@ -20,10 +16,10 @@ const listFiles = async (req, res, next) => {
 
 const getMoreFiles = async  (req, res, next)  => {
   try{
+    const { cursor } = req.query
     const dbx = new Dropbox({ accessToken: process.env.DROPBOX_TOKEN })
-    const { result }  = await dbx.filesListFolderContinue({cursor})
-    console.log('adding entries', result.entries)
-    res.send(result.entries)
+    const { result }  = await dbx.filesListFolderContinue({ cursor })
+    res.send({ entries: result.entries, cursor: result.cursor })
   } catch(err) {
     next(err)
   }
