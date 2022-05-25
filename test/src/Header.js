@@ -12,6 +12,7 @@ export default function Header() {
                 <img src={logo} alt="" width="250" height="50" className="d-inline-block align-text-top"/>
                 Demo
             </a>
+            <button class="btn btn-secondary btn-lg" type="submit">Login</button>
         </nav>
     </div>
     )

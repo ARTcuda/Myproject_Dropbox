@@ -15,14 +15,15 @@ function App() {
     alert(a);
   }
 
-  const fetchList = async () => {
-    const listResponse = await fetch(`${API_URL}/dropbox/list?limit=${5}`)
-    const listJSONResponse = await listResponse.json()
-    setList(listJSONResponse.entries)
-    setCursor(listJSONResponse.cursor)
-  }
+  
 
   useEffect( () => {
+    const fetchList = async () => {
+      const listResponse = await fetch(`${API_URL}/dropbox/list?limit=${5}`)
+      const listJSONResponse = await listResponse.json()
+      setList(listJSONResponse.entries)
+      setCursor(listJSONResponse.cursor)
+    }
     fetchList()
   }, [])
 
