@@ -48,6 +48,9 @@ const downloadFile = async (req, res, next) => {
   }
 } 
 
+/*const receiveTokenFromFront = (token) =>{
+
+}*/
 
 module.exports = {
   listFiles,
