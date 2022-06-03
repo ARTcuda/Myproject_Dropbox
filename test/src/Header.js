@@ -3,7 +3,6 @@ import logo from './logo_2017.png'
 import 'bootstrap/dist/css/bootstrap.css'
 import './Header.css'
 
-
 export default function Header() {
 
     return (

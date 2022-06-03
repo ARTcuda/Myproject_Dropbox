@@ -12,10 +12,6 @@ function App() {
   const [selected, setSelected] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const showAlert = (a) => {
-    alert(a);
-  }
-
   useEffect( () => {
     const fetchList = async () => {
       const listResponse = await fetch(`${API_URL}/dropbox/list?limit=${5}`)

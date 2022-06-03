@@ -8,9 +8,8 @@ import {faFileDownload } from "@fortawesome/free-solid-svg-icons";
 import { API_URL } from './constants'
 
 
-export default ({ item, selected, setSelected }) => {
+const FileItem = ({ item, selected, setSelected }) => {
   const { path_lower: path } = item
-
   console.log('selected in item', selected)
   
   //wtf handleSelect
@@ -32,6 +31,7 @@ export default ({ item, selected, setSelected }) => {
             <div className="card-horizontal" onClick={() => handleSelect}>
               <div className="img-square-wrapper">
                 <img
+                  alt='logo_small'
                   src={logo_small}
                   style={{
                     objectFit: 'contain',
@@ -52,7 +52,7 @@ export default ({ item, selected, setSelected }) => {
               <a
                 className="img-square-wrapper"
                 target='_blank'
-                href={`${API_URL}/dropbox/file?path=${path}`}
+                href={`${API_URL}/dropbox/file?path=${path}`} rel="noreferrer"
               >
                 <FontAwesomeIcon
                   icon={faFileDownload}
@@ -74,3 +74,5 @@ export default ({ item, selected, setSelected }) => {
     </div>
   )
 }
+
+export default FileItem
