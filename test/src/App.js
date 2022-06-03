@@ -4,13 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import FileItem from './FileItem'
 import Header from './Header'
 import Footer from './Footer'
-const API_URL = 'http://localhost:3001'
+import { API_URL } from './constants'
 
 function App() {
   const [list, setList] = useState([])
   const [cursor, setCursor] = useState('')
   const [selected, setSelected] = useState([])
-  const [isLoggedIn, setisLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const showAlert = (a) => {
     alert(a);
