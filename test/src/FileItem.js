@@ -2,7 +2,6 @@ import React from "react";
 import byteSize from "byte-size"
 import { DateTime } from "react-intl-datetime-format"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faDownload} from "@fortawesome/free-brands-svg-icons"
 import './FileItem.css'
 import logo_small from './Dropbox_Icon_small.png'
 import {faFileDownload } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +9,7 @@ import {faFileDownload } from "@fortawesome/free-solid-svg-icons";
 
 export default ({ item, selected, setSelected }) => {
   console.log('selected in item', selected)
+  
   //wtf handleSelect
   const handleSelect = () => {
     setSelected(prev => {
@@ -20,9 +20,12 @@ export default ({ item, selected, setSelected }) => {
 
     })
   }
-  /*const handleClickDownload = async(path) =>{
-  const fileResponse = await fetch(`${API_URL}/dropbox/addItems?cursor=${path}`)
-  wtf?
+
+
+  /*  wtf?
+  const handleClickDownload = async(path) =>{
+  const stream = await fetch(`${API_URL}/dropbox/addItems?cursor=${path}`)
+
   }*/ 
 
   return (
