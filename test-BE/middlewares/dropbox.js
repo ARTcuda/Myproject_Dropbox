@@ -4,8 +4,8 @@ const { Dropbox } = require('dropbox')
 
 const listFiles = async (req, res, next) => {
   try {
-    const { limit = process.env.COUNT } = req.query
-    const dbx = new Dropbox({ accessToken: process.env.DROPBOX_TOKEN })
+    const { limit = process.env.COUNT, dropboxToken } = req.query
+    const dbx = new Dropbox({ accessToken: dropboxToken })
     const { result } = await dbx.filesListFolder({ path: '', limit })
     res.send({ entries: result.entries, cursor: result.cursor })
   } catch (err) {
@@ -15,8 +15,8 @@ const listFiles = async (req, res, next) => {
 
 const getMoreFiles = async (req, res, next) => {
   try {
-    const { cursor } = req.query
-    const dbx = new Dropbox({ accessToken: process.env.DROPBOX_TOKEN })
+    const { cursor, dropboxToken } = req.query
+    const dbx = new Dropbox({ accessToken: dropboxToken })
     const { result } = await dbx.filesListFolderContinue({ cursor })
     res.send({ entries: result.entries, cursor: result.cursor })
   } catch (err) {
@@ -26,13 +26,13 @@ const getMoreFiles = async (req, res, next) => {
 
 const downloadFile = async (req, res, next) => {
   try {
-    const { path } = req.query
+    const { path, dropboxToken } = req.query
 
     if (!path || !path.length) {
       throw new Error('path is not defined')
     }
 
-    const dbx = new Dropbox({ accessToken: process.env.DROPBOX_TOKEN })
+    const dbx = new Dropbox({ accessToken: dropboxToken })
     const file = await dbx.filesDownload({ path })
 
     const stream = Readable.from(file.result.fileBinary)

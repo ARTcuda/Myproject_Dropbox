@@ -8,7 +8,7 @@ import {faFileDownload } from "@fortawesome/free-solid-svg-icons";
 import { API_URL } from './constants'
 
 
-const FileItem = ({ item, selected, setSelected }) => {
+const FileItem = ({ item, selected, setSelected, dropboxToken }) => {
   const { path_lower: path } = item
   console.log('selected in item', selected)
   
@@ -52,7 +52,7 @@ const FileItem = ({ item, selected, setSelected }) => {
               <a
                 className="img-square-wrapper"
                 target='_blank'
-                href={`${API_URL}/dropbox/file?path=${path}`} rel="noreferrer"
+                href={`${API_URL}/dropbox/file?path=${path}&dropboxToken=${dropboxToken}`} rel="noreferrer"
               >
                 <FontAwesomeIcon
                   icon={faFileDownload}
