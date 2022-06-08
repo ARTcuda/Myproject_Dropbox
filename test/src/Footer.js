@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import 'bootstrap/dist/css/bootstrap.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faInstagramSquare, faTwitterSquare, faFacebookSquare } from "@fortawesome/free-brands-svg-icons"
@@ -8,12 +8,12 @@ export default function Footer() {
       <div className="container">
         <footer className="py-3 my-4">
           <ul className="nav justify-content-center border-bottom pb-3 mb-3">
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Source code</a></li>
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Dropbox website</a></li>
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Dropbox API</a></li>
+            <li className="nav-item"><div href="#" className="nav-link px-2 text-muted">Source code</div></li>
+            <li className="nav-item"><div href="#" className="nav-link px-2 text-muted">Dropbox website</div></li>
+            <li className="nav-item"><div href="#" className="nav-link px-2 text-muted">Dropbox API</div></li>
           </ul>
           <div className="d-flex justify-content-between py-4 my-4">
-            <p>&copy; 2022 DIY, Inc. All rights reserved.</p>
+            <p>&copy 2022 DIY, Inc. All rights reserved.</p>
             <ul className="list-unstyled d-flex">
               <li className="ms-3">
                 <i className="fab fa-instagram">
