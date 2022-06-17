@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Alert } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import FileItem from './FileItem'
@@ -25,7 +25,7 @@ function App() {
       setCursor(listJSONResponse.cursor)
     }
     fetchList()
-  })
+  }, [])
 
   const loadMore = async () => {
     if (!token) {
@@ -42,15 +42,24 @@ function App() {
     window.location.href="https://dropbox.com/oauth2/authorize?response_type=token&client_id=ka73scg36t1bp9y&redirect_uri=http://localhost:3000/"
   }
 
+  const handleAlert = async() =>{
+    Alert.alert(
+      "Welcome",
+      "Welcome to toyAlert!",
+      [
+        { text: "OK" }
+      ])
+  }
+
   return (
     <div className="App">
       <Header />
       {Boolean(token) ? (
          <><div className="container py-3">
             <div className="btn-group d-block float-end" role="group">
-              <button type="button" className="btn btn-secondary">Upload</button>
-              <button type="button" className="btn btn-secondary">Move</button>
-              <button type="button" className="btn btn-secondary">Delete</button>
+              <button type="button" className="btn btn-secondary" onClick={handleAlert} >Upload</button>
+              <button type="button" className="btn btn-secondary" onClick={handleAlert}>Move</button>
+              <button type="button" className="btn btn-secondary"onClick={handleAlert}>Delete</button>
             </div>
           </div><div className="container py-3">
               {list.map((item) => <FileItem
