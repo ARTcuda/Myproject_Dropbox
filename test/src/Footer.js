@@ -13,7 +13,7 @@ export default function Footer() {
             <li className="nav-item"><div href="#" className="nav-link px-2 text-muted">Dropbox API</div></li>
           </ul>
           <div className="d-flex justify-content-between py-4 my-4">
-            <p>&copy 2022 DIY, Inc. All rights reserved.</p>
+            <p>copy 2022 DIY, Inc. All rights reserved.</p>
             <ul className="list-unstyled d-flex">
               <li className="ms-3">
                 <i className="fab fa-instagram">
